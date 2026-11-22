@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include "candidates.h"
@@ -100,6 +99,16 @@ void viewResults()
     }
     else
     {
+        // Display votes received by each candidate
+        printf("\n===== CANDIDATE VOTE COUNT =====\n");
+
+        for(i = 0; i < candidateCount; i++)
+        {
+            printf("%d. %s - %d votes\n",
+                   i + 1, candidates[i], candidateVotes[i]);
+        }
+
+        // Find the candidate with the highest votes
         for(i = 0; i < candidateCount; i++)
         {
             if(candidateVotes[i] > highestVotes)
@@ -114,6 +123,7 @@ void viewResults()
             }
         }
 
+        // Display the winner or tie
         if(tie == 1)
         {
             printf("\nIt's a tie! No single winner sad.\n");
@@ -133,6 +143,7 @@ void votingSummary()
     int totalVoted = 0;
     float percentage;
 
+    // Count students who have voted
     for(i = 0; i < voterCount; i++)
     {
         if(voterHasVoted[i] == 1)
@@ -141,6 +152,7 @@ void votingSummary()
         }
     }
 
+    // Calculate voting participation percentage
     if(voterCount > 0)
     {
         percentage = (float)totalVoted / voterCount * 100;
